@@ -16,4 +16,4 @@
 // и т.д.
 
 // Пример кастомного компонента
-export const placeholderComponent = "Add your UI components here";
+export { Img } from './img';

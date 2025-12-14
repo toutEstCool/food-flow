@@ -21,3 +21,8 @@
 // export { HomePage } from './home';
 // export { ProductPage } from './product';
 // export { CartPage } from './cart';
+
+
+export { HomePage } from './home'
+export { FavoritesPage } from './favorites'
+export { ProfilePage } from './profile'
