@@ -1,0 +1,118 @@
+/**
+ * Theme System
+ * Light and Dark themes with shadcn/ui compatibility
+ */
+
+:root {
+    /* ==================== LIGHT THEME (DEFAULT) ==================== */
+
+    /* Background */
+    --background: var(--color-neutral-50);
+    --foreground: var(--color-neutral-950);
+
+    /* Card */
+    --card: hsl(0 0% 100%);
+    --card-foreground: var(--color-neutral-950);
+
+    /* Popover */
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: var(--color-neutral-950);
+
+    /* Primary */
+    --primary: var(--color-brand-600);
+    --primary-foreground: hsl(0 0% 100%);
+
+    /* Secondary */
+    --secondary: var(--color-neutral-100);
+    --secondary-foreground: var(--color-neutral-900);
+
+    /* Muted */
+    --muted: var(--color-neutral-100);
+    --muted-foreground: var(--color-neutral-500);
+
+    /* Accent */
+    --accent: var(--color-neutral-100);
+    --accent-foreground: var(--color-neutral-900);
+
+    /* Destructive */
+    --destructive: var(--color-error-600);
+    --destructive-foreground: hsl(0 0% 100%);
+
+    /* Border */
+    --border: var(--color-neutral-200);
+    --input: var(--color-neutral-200);
+
+    /* Ring */
+    --ring: var(--color-brand-600);
+
+    /* Chart Colors */
+    --chart-1: hsl(12 76% 61%);
+    --chart-2: hsl(173 58% 39%);
+    --chart-3: hsl(197 37% 24%);
+    --chart-4: hsl(43 74% 66%);
+    --chart-5: hsl(27 87% 67%);
+
+    /* Radius */
+    --radius: var(--radius-lg);
+}
+
+[data-theme="dark"] {
+    /* ==================== DARK THEME ==================== */
+
+    /* Background */
+    --background: var(--color-neutral-950);
+    --foreground: var(--color-neutral-50);
+
+    /* Card */
+    --card: var(--color-neutral-900);
+    --card-foreground: var(--color-neutral-50);
+
+    /* Popover */
+    --popover: var(--color-neutral-900);
+    --popover-foreground: var(--color-neutral-50);
+
+    /* Primary */
+    --primary: var(--color-brand-500);
+    --primary-foreground: var(--color-neutral-950);
+
+    /* Secondary */
+    --secondary: var(--color-neutral-800);
+    --secondary-foreground: var(--color-neutral-50);
+
+    /* Muted */
+    --muted: var(--color-neutral-800);
+    --muted-foreground: var(--color-neutral-400);
+
+    /* Accent */
+    --accent: var(--color-neutral-800);
+    --accent-foreground: var(--color-neutral-50);
+
+    /* Destructive */
+    --destructive: var(--color-error-500);
+    --destructive-foreground: var(--color-neutral-50);
+
+    /* Border */
+    --border: var(--color-neutral-800);
+    --input: var(--color-neutral-800);
+
+    /* Ring */
+    --ring: var(--color-brand-400);
+
+    /* Chart Colors */
+    --chart-1: hsl(220 70% 50%);
+    --chart-2: hsl(160 60% 45%);
+    --chart-3: hsl(30 80% 55%);
+    --chart-4: hsl(280 65% 60%);
+    --chart-5: hsl(340 75% 55%);
+    --chart-6: hsl(207 43% 49%);
+}
+
+/* Telegram Mini App Theme Support */
+[data-theme="telegram"] {
+    --background: var(--tg-theme-bg-color, var(--color-neutral-50));
+    --foreground: var(--tg-theme-text-color, var(--color-neutral-950));
+    --primary: var(--tg-theme-button-color, var(--color-brand-600));
+    --primary-foreground: var(--tg-theme-button-text-color, hsl(0 0% 100%));
+    --secondary: var(--tg-theme-secondary-bg-color, var(--color-neutral-100));
+    --border: var(--tg-theme-hint-color, var(--color-neutral-200));
+}
