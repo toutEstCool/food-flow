@@ -3,7 +3,6 @@ import {
     useState,
     type ReactElement,
     forwardRef,
-    useEffect,
 } from "react";
 import { cn } from "@/shared/lib/utils";
 
@@ -69,19 +68,13 @@ export const Img = forwardRef<HTMLImageElement, ImgProps>(
         const [isLoading, setIsLoading] = useState(true);
         const [hasError, setHasError] = useState(false);
 
-        useEffect(() => {
-            if (!src) return
+        const [lastSrc, setLastSrc] = useState(src);
 
-            setIsLoading(true)
-            setHasError(false)
-
-            const img = new Image()
-            img.src = src
-
-            if (img.complete) {
-                setIsLoading(false)
-            }
-        }, [src])
+        if (src !== lastSrc) {
+            setLastSrc(src);
+            setIsLoading(true);
+            setHasError(false);
+        }
 
         const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
             setIsLoading(false);
