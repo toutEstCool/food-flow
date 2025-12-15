@@ -21,13 +21,22 @@ const POPULAR_QUERIES = [
 ];
 
 export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
-    const [mounted, setMounted] = useState(false);
+    const [mounted, setMounted] = useState(isOpen);
     const [visible, setVisible] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
 
+    // State from props pattern: preserve mounted state during open
+    if (isOpen && !mounted) {
+        setMounted(true);
+    }
+
+    // State from props pattern: start exit animation immediately when closed
+    if (!isOpen && visible) {
+        setVisible(false);
+    }
+
     useEffect(() => {
         if (isOpen) {
-            setMounted(true);
             // Slight delay to ensure DOM is ready for transition
             requestAnimationFrame(() => {
                 setVisible(true);
@@ -36,7 +45,6 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
             // Focus input after transition roughly starts
             setTimeout(() => inputRef.current?.focus(), 50);
         } else {
-            setVisible(false);
             const timer = setTimeout(() => {
                 setMounted(false);
                 document.body.style.overflow = "";
