@@ -17,3 +17,4 @@
 
 // Пример кастомного компонента
 export { Img } from './img';
+export { Input } from './input';

@@ -24,3 +24,4 @@
 
 
 export { Header } from './header';
+export { PromoBanner } from './promo-banner';
