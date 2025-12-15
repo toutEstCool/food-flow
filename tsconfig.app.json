@@ -53,6 +53,7 @@
     "noUncheckedSideEffectImports": true
   },
   "include": [
-    "src"
+    "src",
+    "telegram.d.ts"
   ]
 }
