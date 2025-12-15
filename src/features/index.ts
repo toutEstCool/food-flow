@@ -23,3 +23,5 @@
 // export * from './auth/login';
 // export * from './auth/register';
 // export * from './cart/add-to-cart';
+
+export { SearchOverlay } from './search';
