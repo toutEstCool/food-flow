@@ -27,43 +27,26 @@ export function ThemeProvider({
     });
 
     // Determine actual theme (resolve "system" to "light" or "dark")
-    const [actualTheme, setActualTheme] = useState<Exclude<Theme, "system">>(
-        () => {
-            if (theme === "telegram") return "telegram";
-            if (theme === "system") {
-                return window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                    : "light";
-            }
-            return theme;
-        }
-    );
+    // Track system preference
+    const [isSystemDark, setIsSystemDark] = useState<boolean>(() => {
+        if (typeof window === "undefined") return false;
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    });
 
-    // Listen to system theme changes
     useEffect(() => {
-        if (theme !== "system") return;
-
         const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
         const handleChange = (e: MediaQueryListEvent) => {
-            setActualTheme(e.matches ? "dark" : "light");
+            setIsSystemDark(e.matches);
         };
 
         mediaQuery.addEventListener("change", handleChange);
         return () => mediaQuery.removeEventListener("change", handleChange);
-    }, [theme]);
+    }, []);
 
-    // Update actual theme when theme changes
-    useEffect(() => {
-        if (theme === "telegram") {
-            setActualTheme("telegram");
-        } else if (theme === "system") {
-            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            setActualTheme(isDark ? "dark" : "light");
-        } else {
-            setActualTheme(theme);
-        }
-    }, [theme]);
+    // Determine actual theme (resolve "system" to "light" or "dark")
+    const actualTheme =
+        theme === "system" ? (isSystemDark ? "dark" : "light") : theme;
 
     // Apply theme to DOM
     useEffect(() => {
