@@ -28,7 +28,7 @@
     }
 
     h2 {
-        @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+        @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
     }
 
     h3 {
@@ -110,8 +110,9 @@
     }
 
     /* Focus Styles */
+    /* ring-offset-2 - удаленное правило */
     :focus-visible {
-        @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+        @apply outline-none ring-2 ring-ring ring-offset-background;
     }
 
     /* Selection */
