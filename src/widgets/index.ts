@@ -25,3 +25,5 @@
 
 export { Header } from './header';
 export { PromoBanner } from './promo-banner';
+export { CategorySlider } from './category-slider';
+export { CategoryNav } from './category-nav';

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Input } from "@/shared/ui";
-import { ChevronRight, Sparkles, Search as SearchIcon } from "lucide-react";
+import { ChevronRight, Sparkles, Search as SearchIcon, ArrowLeft } from "lucide-react";
 import { cn } from "@/shared/lib/utils";
 
 interface SearchOverlayProps {
@@ -10,9 +10,6 @@ interface SearchOverlayProps {
 }
 
 const POPULAR_QUERIES = [
-    "White Toyota Camry", // Keeping user's example style or adapting? User said "like the screenshot". I'll adapt to FoodFlow context to be helpful. 
-    // "Пицца пепперони", "Суши филадельфия", "Бургер", "Шаурма"
-    // But maybe they want generic? I will use Food items to match the app name "FoodFlow".
     "Пепперони пицца",
     "Калифорния роллы",
     "Том Ям с креветками",
@@ -57,6 +54,9 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 
     return createPortal(
         <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Поиск"
             className={cn(
                 "fixed inset-0 z-50 flex flex-col bg-background transition-all duration-300 ease-in-out",
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
@@ -65,25 +65,32 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
         >
             {/* Header / Top Bar */}
             <div className="flex items-center gap-3 p-4 border-b border-border/40">
+                <div className="w-8 h-8 bg-muted flex items-center justify-center rounded-[8px]">
+                    <button
+                        onClick={onClose}
+                        className="text-[15px] font-medium text-primary active:opacity-70 transition-opacity whitespace-nowrap"
+                        aria-label="Зарыть поиск"
+                    >
+                        <ArrowLeft className="w-5 h-5 text-white" />
+                    </button>
+                </div>
+
                 <div className="relative flex-1">
                     <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
                     <Input
                         ref={inputRef}
                         placeholder="Поиск еды..."
-                        className="pl-9 bg-muted/50 border-transparent focus-visible:bg-background focus-visible:ring-0 focus-visible:border-transparent focus-visible:shadow-none transition-all rounded-xl h-10"
+                        className="pl-9 bg-muted/50 border-transparent  focus-visible:ring-0 focus-visible:border-transparent focus-visible:shadow-none transition-all rounded-xl h-10"
                     />
                 </div>
-                <button
-                    onClick={onClose}
-                    className="text-[15px] font-medium text-primary active:opacity-70 transition-opacity whitespace-nowrap"
-                >
-                    Отменить
-                </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
                 {/* AI / Promo Banner */}
-                <div className="flex items-center justify-between p-4 rounded-2xl bg-muted/30 active:bg-muted/50 transition-colors cursor-pointer border border-border/40">
+                <button
+                    type="button"
+                    className="w-full flex items-center justify-between p-4 rounded-2xl bg-muted/30 active:bg-muted/50 transition-colors cursor-pointer border border-border/40 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
                     <div className="flex items-center gap-3">
                         <div className="w-6 h-6 rounded-full bg-linear-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shrink-0">
                             <Sparkles className="w-5 h-5 text-white" />
@@ -98,7 +105,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                         </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-muted-foreground" />
-                </div>
+                </button>
 
                 {/* Popular Queries */}
                 <div>
